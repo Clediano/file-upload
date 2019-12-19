@@ -3,10 +3,6 @@ const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
 
-require('dotenv').config({
-    path: path.resolve(__dirname, '..', '.env')
-});
-
 const app = express();
 
 app.use(cors());
@@ -20,8 +16,9 @@ io.on('connection', socket => {
     })
 });
 
-mongoose.connect(process.env.MONGO_URL, {
-    useNewUrlParser: true
+mongoose.connect('mongodb+srv://clediano:clediano@cluster0-ntnhk.mongodb.net/omnistack?retryWrites=true', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 });
 
 app.use((req, res, next) => {
